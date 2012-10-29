@@ -23,22 +23,18 @@
     symbol))
 
 (defmacro defpackage (name &rest options)
-  (let* ((docstring nil)
-         (exported
-          (map-bind (mapcan) ((option options))
+  (let* ((exported nil)
+         (clauses
+          (map-bind (mapcar) ((option options))
             (destructuring-bind (operator &rest arguments) option
               (ecase operator
-                (:export (copy-seq arguments))
-                (:documentation
-                 (prog1 nil
-                   (destructuring-bind (docstring-option) arguments
-                     (check-type docstring-option string)
-                     (if docstring
-                         (error "Multiple :documentation options in ~S."
-                                options)
-                         (setf docstring docstring-option))))))))))
+                (:export
+                 (push (copy-seq arguments) exported)
+                 option)
+                ((:nicknames :documentation :size)
+                 option))))))
     `(progn
-       (mapcar #'ensure ',exported)
+       (mapcar #'ensure ',(reduce #'nconc (nreverse exported) :from-end t))
        (cl:defpackage ,name
          (:use #:ikeyword)
-         (:export ,@exported)))))
+         ,@clauses))))

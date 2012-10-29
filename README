@@ -71,9 +71,11 @@ macro DEFPACKAGE name &rest options => new-or-redefined-package
 
   A very simplified version of cl:defpackage dedicated to creation of
   "ikeyword packages". The syntax is just like cl:defpackage, except
-  that only the :export and :documentation options are supported. The
-  package will implicitly use the IKEYWORD package. All the symbol
-  names in :export clauses will be passed to ENSURE.
+  that only the :export, :nicknames, :documentation and :size options
+  are supported. The package will implicitly use the IKEYWORD package.
+  All the symbol names in :export clauses will be passed to ENSURE.
+  The :nicknames, :documentation and :size options are passed straight
+  through to cl:defpackage.
 
   It's possible to obtain a list of all ikeyword packages with:
   (package-used-by-list (ikeywords:package))
@@ -95,6 +97,7 @@ function ENSURE name => new-or-existing-ikeyword
 
 
 function PACKAGE => ikeyword-package
+
   This convenience function simply returns the IKEYWORD package.
   Basically equivalent to (find-package '#:ikeyword).
 
