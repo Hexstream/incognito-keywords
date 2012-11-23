@@ -34,7 +34,8 @@
                 ((:nicknames :documentation :size)
                  option))))))
     `(progn
-       (mapcar #'ensure ',(reduce #'nconc (nreverse exported) :from-end t))
+       (enhanced-eval-when:eval-when t
+         (mapcar #'ensure ',(reduce #'nconc (nreverse exported) :from-end t)))
        (cl:defpackage ,name
          (:use #:ikeyword)
          ,@clauses))))
