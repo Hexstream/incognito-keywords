@@ -58,9 +58,10 @@ Usage of incognito-keywords is very easy!
 
 First of all, in the way of packages there's the INCOGNITO-KEYWORDS
 package, which is also nicknamed IKEYWORDS. It exports the functions
-PACKAGE and ENSURE and the macro DEFPACKAGE. These symbols should be
-explicitly qualified. For example, ikeywords:defpackage instead of
-(:use #:ikeywords) or (:import-from #:ikeywords #:defpackage).
+(PACKAGE ENSURE IKEYWORDP) and the macro DEFPACKAGE. These symbols
+should be explicitly qualified. For example, ikeywords:defpackage
+instead of (:use #:ikeywords) or (:import-from #:ikeywords
+#:defpackage).
 
 ikeywords live in the IKEYWORD package (also nicknamed "I") and are
 typically created implicitly with ikeywords:defpackage, but it's also
