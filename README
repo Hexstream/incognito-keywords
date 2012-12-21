@@ -67,7 +67,7 @@ implicitly with ikeywords:defpackage, but it's also possible to create
 some dynamically with ikeywords:ensure.
 
 
-macro DEFPACKAGE name &rest options => new-or-redefined-package
+macro ikeywords:DEFPACKAGE name &rest options => new-or-redefined-package
 
   A very simplified version of cl:defpackage dedicated to creation of
   "ikeyword packages". The syntax is just like cl:defpackage, except
@@ -81,7 +81,7 @@ macro DEFPACKAGE name &rest options => new-or-redefined-package
   (package-used-by-list (ikeywords:package))
 
 
-function ENSURE name => new-or-existing-ikeyword
+function ikeywords:ENSURE name => new-or-existing-ikeyword
 
   If NAME already names an ikeyword (a symbol in the IKEYWORD
   package), then return that ikeyword.
@@ -96,7 +96,7 @@ function ENSURE name => new-or-existing-ikeyword
   point of ikeywords!
 
 
-function PACKAGE => ikeyword-package
+function ikeywords:PACKAGE => ikeyword-package
 
   This convenience function simply returns the IKEYWORD package.
   Basically equivalent to (find-package '#:ikeyword).

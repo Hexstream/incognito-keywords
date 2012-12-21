@@ -7,22 +7,22 @@
 (defvar *%cl-package* (find-package '#:cl))
 
 (declaim (inline package))
-(defun package ()
+(defun ikeywords:package ()
   *%package*)
 
-(defun ensure (name)
+(defun ikeywords:ensure (name)
   (setf name (string name))
   (when (find-symbol name *%cl-package*)
     (error "Can't create an ikeyword named ~S ~
             since a symbol with that name already exists ~
             in the ~A package."
            name (package-name *%cl-package*)))
-  (let* ((ikeyword-package (package))
+  (let* ((ikeyword-package (ikeywords:package))
          (symbol (intern name ikeyword-package)))
     (export symbol ikeyword-package)
     symbol))
 
-(defmacro defpackage (name &rest options)
+(defmacro ikeywords:defpackage (name &rest options)
   (let* ((exported nil)
          (clauses
           (map-bind (mapcar) ((option options))
@@ -35,7 +35,8 @@
                  option))))))
     `(progn
        (enhanced-eval-when:eval-when t
-         (mapcar #'ensure ',(reduce #'nconc (nreverse exported) :from-end t)))
+         (mapcar #'ikeywords:ensure
+                 ',(reduce #'nconc (nreverse exported) :from-end t)))
        (cl:defpackage ,name
          (:use #:ikeyword)
          ,@clauses))))
