@@ -62,9 +62,9 @@ PACKAGE and ENSURE and the macro DEFPACKAGE. These symbols should be
 explicitly qualified. For example, ikeywords:defpackage instead of
 (:use #:ikeywords) or (:import-from #:ikeywords #:defpackage).
 
-ikeywords live in the IKEYWORD package and are typically created
-implicitly with ikeywords:defpackage, but it's also possible to create
-some dynamically with ikeywords:ensure.
+ikeywords live in the IKEYWORD package (also nicknamed "I") and are
+typically created implicitly with ikeywords:defpackage, but it's also
+possible to create some dynamically with ikeywords:ensure.
 
 
 macro ikeywords:DEFPACKAGE name &rest options => new-or-redefined-package

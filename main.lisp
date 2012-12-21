@@ -2,7 +2,7 @@
 
 (defvar *%package*
   (or (find-package '#:ikeyword)
-      (make-package '#:ikeyword :use nil)))
+      (make-package '#:ikeyword :use nil :nicknames '(#:i))))
 
 (defvar *%cl-package* (find-package '#:cl))
 
