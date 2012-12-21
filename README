@@ -102,6 +102,12 @@ function ikeywords:PACKAGE => ikeyword-package
   Basically equivalent to (find-package '#:ikeyword).
 
 
+function ikeywords:IKEYWORDP object => generalized-boolean
+
+  This convenience function simply returns true if the OBJECT is a
+  symbol and its home package (as returned by SYMBOL-PACKAGE) is the
+  IKEYWORD package, else it returns false.
+
 
 Restrictions to avoid definition conflicts
 ------------------------------------------

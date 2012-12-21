@@ -4,6 +4,7 @@
   (:import-from #:map-bind #:map-bind)
   (:shadow #:package
            #:defpackage)
-  (:export #:package
+  (:export #:defpackage
            #:ensure
-           #:defpackage))
+           #:package
+           #:ikeywordp))

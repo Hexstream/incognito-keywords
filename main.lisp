@@ -10,6 +10,10 @@
 (defun ikeywords:package ()
   *%package*)
 
+(defun ikeywords:ikeywordp (object)
+  (and (symbolp object)
+       (eq (symbol-package object) (ikeywords:package))))
+
 (defun ikeywords:ensure (name)
   (setf name (string name))
   (when (find-symbol name *%cl-package*)
