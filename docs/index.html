@@ -110,15 +110,15 @@
         <div class="scroll">
           <pre class="example"><code class="common-lisp">(define (<code class="common-lisp ikeyword">macro</code> my-macro) ...)
 
-<span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;;</a> blends much better with:</span>
-(define (variable my-variable) ...) <span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;</a> VARIABLE is exported from CL.</span>
+<span class="comment">;; blends much better with:</span>
+(define (variable my-variable) ...) <span class="comment">; VARIABLE is exported from CL.</span>
 
-<span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;;</a> than would:</span>
+<span class="comment">;; than would:</span>
 (define (:macro my-macro))
 
-<span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;;</a> And the following:</span>
-(define (macro my-macro) ...) <span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;</a> MACRO being a normal symbol</span>
-<span class="comment"><a href="http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm">;;</a> would very likely result in symbol conflicts.</span>
+<span class="comment">;; And the following:</span>
+(define (macro my-macro) ...) <span class="comment">; MACRO being a normal symbol</span>
+<span class="comment">;; would very likely result in symbol conflicts.</span>
 
 (map '<code class="common-lisp ikeyword">alist</code> ...)
 
