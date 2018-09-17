@@ -13,4 +13,6 @@
   :version "1.1"
   :serial cl:t
   :components ((:file "package")
-	       (:file "main")))
+	       (:file "main"))
+
+  :in-order-to ((asdf:test-op (asdf:test-op #:incognito-keywords_tests))))
