@@ -13,7 +13,6 @@
     <title>incognito-keywords | Libraries | HexstreamSoft</title>
     <link href="https://www.hexstreamsoft.com/css/global.css" rel="stylesheet" type="text/css" />
     <link href="https://www.hexstreamsoft.com/libraries/libraries.css" rel="stylesheet" type="text/css" />
-    <link href="index.css" rel="stylesheet" type="text/css" />
     <script src="https://global.hexstreamsoft.com/scripts/global.js"></script>
     <script src="https://www.hexstreamsoft.com/scripts/global.js"></script>
     <script src="https://www.hexstreamsoft.com/libraries/libraries.js" defer></script>
@@ -86,7 +85,7 @@
 
       <section id="introduction">
 
-        <p><cite class="common-lisp library">incognito-keywords</cite> introduces a new kind of keyword that looks just like any non-keyword symbol and allows safe usage of convenient but clashy symbol names by multiple libraries without conflicts through sharing. Some names that might benefit are <code>alist</code>, <code>blist</code>, <code>plist</code>, <code>macro</code>, <code>operator</code>, <code>index</code>, <code>&amp;doc</code>, <code>&amp;decl</code>, <code>&amp;rest+</code>, <code>&amp;destructure</code>, <code>&amp;ignored</code> and <code>&amp;ignorable</code>.</p>
+        <p><cite class="relevant">incognito-keywords</cite> introduces a new kind of keyword that looks just like any non-keyword symbol and allows safe usage of convenient but clashy symbol names by multiple libraries without conflicts through sharing. Some names that might benefit are <code>alist</code>, <code>blist</code>, <code>plist</code>, <code>macro</code>, <code>operator</code>, <code>index</code>, <code>&amp;doc</code>, <code>&amp;decl</code>, <code>&amp;rest+</code>, <code>&amp;destructure</code>, <code>&amp;ignored</code> and <code>&amp;ignorable</code>.</p>
 
       </section>
 
@@ -113,7 +112,7 @@
         <p>incognito keywords, or "ikeywords" for short, are useful targets for various kinds of dispatching.</p>
 
         <div class="scroll">
-          <pre class="example"><code class="common-lisp">(define (<code class="common-lisp ikeyword">macro</code> my-macro) ...)
+          <pre class="example"><code class="common-lisp">(define (<code class="relevant marker">macro</code> my-macro) ...)
 
 <span class="comment">;; blends much better with:</span>
 (define (variable my-variable) ...) <span class="comment">; VARIABLE is exported from CL.</span>
@@ -125,10 +124,10 @@
 (define (macro my-macro) ...) <span class="comment">; MACRO being a normal symbol</span>
 <span class="comment">;; would very likely result in symbol conflicts.</span>
 
-(map '<code class="common-lisp ikeyword">alist</code> ...)
+(map '<code class="relevant marker">alist</code> ...)
 
-(do-for ((i (<code class="common-lisp ikeyword">index</code> :from 1))
-         (((<code class="common-lisp ikeyword">&amp;ignored</code> key) value) (<code class="common-lisp ikeyword">plist</code> my-plist)))
+(do-for ((i (<code class="relevant marker">index</code> :from 1))
+         (((<code class="relevant marker">&amp;ignored</code> key) value) (<code class="relevant marker">plist</code> my-plist)))
   ...)
 
 (ikeywords:defpackage #:do-for.ikeywords
@@ -141,10 +140,10 @@
   (:use #:cl #:do-for-ikeywords)
   (:import-from #:do-for #:do-for))
 
-(locate '<code class="common-lisp ikeyword">macro</code> "my-macro")</code></pre>
+(locate '<code class="relevant marker">macro</code> "my-macro")</code></pre>
         </div>
 
-        <p>In the examples above, <code class="common-lisp">define</code>, <code class="common-lisp">map</code>, <code class="common-lisp">do-for</code> and <code class="common-lisp">locate</code> could come from different libraries by different authors. If they all use ikeywords as appropriate, then their users can use all these libraries from one package without symbol conflicts!</p>
+        <p>In the examples above, <code>define</code>, <code>map</code>, <code>do-for</code> and <code>locate</code> could come from different libraries by different authors. If they all use ikeywords as appropriate, then their users can use all these libraries from one package without symbol conflicts!</p>
 
       </section>
 
@@ -162,38 +161,38 @@
 
         <nav class="tabs">
           <ul>
-            <li><a href="#defpackage"><code class="common-lisp library macro operator">defpackage</code></a></li>
-            <li><a href="#ensure"><code class="common-lisp library function operator">ensure</code></a></li>
-            <li><a href="#package"><code class="common-lisp library function operator">package</code></a></li>
+            <li><a href="#defpackage"><code class="relevant">defpackage</code></a></li>
+            <li><a href="#ensure"><code class="relevant">ensure</code></a></li>
+            <li><a href="#package"><code class="relevant">package</code></a></li>
           </ul>
         </nav>
 
 
 
-        <p>Usage of <cite class="common-lisp library">incognito-keywords</cite> is very easy!</p>
+        <p>Usage of <cite class="relevant">incognito-keywords</cite> is very easy!</p>
 
-        <p>First of all, in the way of packages there's the <code class="common-lisp library package">incognito-keywords</code> package, which is also nicknamed <code class="common-lisp library package">ikeywords</code>. It exports the functions <code class="common-lisp library function operator">package</code> and <code class="common-lisp library function operator">ensure</code> and the macro <code class="common-lisp library macro operator">defpackage</code>. These symbols should be explicitly qualified. For example, <code class="common-lisp">ikeywords:defpackage</code> instead of <code class="common-lisp">(:use #:ikeywords)</code> or <code class="common-lisp">(:import-from #:ikeywords #:defpackage)</code>.</p>
+        <p>First of all, in the way of packages there's the <code class="relevant">incognito-keywords</code> package, which is also nicknamed <code class="relevant">ikeywords</code>. It exports the functions <code class="relevant">package</code> and <code class="relevant">ensure</code> and the macro <code class="relevant">defpackage</code>. These symbols should be explicitly qualified. For example, <code class="common-lisp">ikeywords:defpackage</code> instead of <code class="common-lisp">(:use #:ikeywords)</code> or <code class="common-lisp">(:import-from #:ikeywords #:defpackage)</code>.</p>
 
-        <p>ikeywords live in the <code class="common-lisp library package">ikeyword</code> package and are typically created implicitly with <code class="common-lisp library macro operator">ikeywords:defpackage</code>, but it's also possible to create some dynamically with <code class="common-lisp library function operator">ikeywords:ensure</code>.</p>
+        <p>ikeywords live in the <code class="relevant">ikeyword</code> package and are typically created implicitly with <code class="relevant">ikeywords:defpackage</code>, but it's also possible to create some dynamically with <code class="relevant">ikeywords:ensure</code>.</p>
 
         <dl>
 
-          <dt id="defpackage"><pre>Macro <dfn><code class="common-lisp library macro operator">defpackage</code></dfn> <var>name</var> &amp;rest <var>options</var> =&gt; <var>new-or-redefined-package</var></pre></dt>
+          <dt id="defpackage"><pre>Macro <dfn><code class="relevant">defpackage</code></dfn> <var>name</var> &amp;rest <var>options</var> =&gt; <var>new-or-redefined-package</var></pre></dt>
           <dd>
             <p>A very simplified version of cl:defpackage dedicated to creation of "ikeyword packages". The syntax is just like cl:defpackage, except that only the :export, :nicknames, :documentation and :size options are supported. The package will implicitly use the IKEYWORD package. All the symbol names in :export clauses will be passed to ENSURE. The :nicknames, :documentation and :size options are passed straight through to cl:defpackage.</p>
-            <p>It's possible to obtain a list of all ikeyword packages with: <code class="common-lisp">(package-used-by-list (<code class="common-lisp library function operator">ikeywords:package</code>))</code></p>
+            <p>It's possible to obtain a list of all ikeyword packages with: <code class="common-lisp">(package-used-by-list (<code class="relevant">ikeywords:package</code>))</code></p>
           </dd>
 
-          <dt id="ensure"><pre>Function <dfn><code class="common-lisp library function operator">ensure</code></dfn> <var>name</var> =&gt; <var>new-or-existing-ikeyword</var></pre></dt>
+          <dt id="ensure"><pre>Function <dfn><code class="relevant">ensure</code></dfn> <var>name</var> =&gt; <var>new-or-existing-ikeyword</var></pre></dt>
           <dd>
-            <p>If <var>name</var> already names an ikeyword (a symbol in the <code class="common-lisp library package">ikeyword</code> package), then return that ikeyword.</p>
-            <p>Else, create the ikeyword (interning a symbol with that name in the <code class="common-lisp library package">ikeyword</code> package), immediately export it (from the <code class="common-lisp library package">ikeyword</code> package), then return the new ikeyword.</p>
-            <p>Attempting to create an ikeyword with the name of one of the 978 symbols in the <code class="common-lisp standard package">common-lisp</code> package is an error, as this would almost inevitably result in symbol conflicts, which would defeat the whole point of ikeywords!</p>
+            <p>If <var>name</var> already names an ikeyword (a symbol in the <code class="relevant">ikeyword</code> package), then return that ikeyword.</p>
+            <p>Else, create the ikeyword (interning a symbol with that name in the <code class="relevant">ikeyword</code> package), immediately export it (from the <code class="relevant">ikeyword</code> package), then return the new ikeyword.</p>
+            <p>Attempting to create an ikeyword with the name of one of the 978 symbols in the <code>common-lisp</code> package is an error, as this would almost inevitably result in symbol conflicts, which would defeat the whole point of ikeywords!</p>
           </dd>
 
-          <dt id="package"><pre>Function <code class="common-lisp library function operator">package</code> =&gt; <var>ikeyword-package</var></pre></dt>
+          <dt id="package"><pre>Function <code class="relevant">package</code> =&gt; <var>ikeyword-package</var></pre></dt>
           <dd>
-            <p>This convenience function simply returns the <code class="common-lisp library package">ikeyword</code> package.</p>
+            <p>This convenience function simply returns the <code class="relevant">ikeyword</code> package.</p>
             <p>It's basically equivalent to <code class="common-lisp">(find-package '#:ikeyword)</code>.</p>
           </dd>
 
@@ -213,9 +212,9 @@
           </span>
         </h1>
 
-        <p><cite class="common-lisp library">incognito-keywords</cite>' reason to exist is to allow libraries to make use of some very desirable symbol names, while avoiding the excessive symbol conflicts this would normally incur. <strong>However, incorrect usage of this library could actually increase (definition) conflicts.</strong> So please carefully consider the following:</p>
+        <p><cite class="relevant">incognito-keywords</cite>' reason to exist is to allow libraries to make use of some very desirable symbol names, while avoiding the excessive symbol conflicts this would normally incur. <strong>However, incorrect usage of this library could actually increase (definition) conflicts.</strong> So please carefully consider the following:</p>
 
-        <p>Libraries should not create global definitions for Common Lisp functions, macros, <code class="common-lisp standard macro operator">setf</code> expanders, etc. on ikeywords, as any two libraries that do this can't be safely loaded in the same image.</p>
+        <p>Libraries should not create global definitions for Common Lisp functions, macros, <code>setf</code> expanders, etc. on ikeywords, as any two libraries that do this can't be safely loaded in the same image.</p>
 
         <p>However, if a library creates a new kind of definition in another "namespace", then this library can safely create such definitions on these symbols. However, if that library exports a way to create such definitions, then users of that library can't safely create such definitions on ikeywords.</p>
 
