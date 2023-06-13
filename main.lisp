@@ -29,14 +29,15 @@
 (defmacro ikeywords:defpackage (name &rest options)
   (let* ((exported nil)
          (clauses
-          (map-bind (mapcar) ((option options))
-            (destructuring-bind (operator &rest arguments) option
-              (ecase operator
-                (:export
-                 (push (copy-seq arguments) exported)
-                 option)
-                ((:nicknames :documentation :size)
-                 option))))))
+           (mapcar (lambda (option)
+                     (destructuring-bind (operator &rest arguments) option
+                       (ecase operator
+                         (:export
+                          (push (copy-seq arguments) exported)
+                          option)
+                         ((:nicknames :documentation :size)
+                          option))))
+                   options)))
     `(progn
        (enhanced-eval-when:eval-when t
          (mapcar #'ikeywords:ensure
